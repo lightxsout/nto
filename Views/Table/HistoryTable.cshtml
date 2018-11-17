@@ -1,0 +1,107 @@
+﻿@model WaterHistoryApp.Models.History
+
+
+<br />
+
+@using (Html.BeginForm("TableEdit", "Table", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.DateTime)
+    @Html.HiddenFor(m => m.Season)
+    @Html.HiddenFor(m => m.TemperatureConditions)
+    @Html.HiddenFor(m => m.NumberEmployees)
+    @Html.HiddenFor(m => m.DayWeek)
+    @Html.HiddenFor(m => m.PreviouDay)
+    @Html.HiddenFor(m => m.TimeDelivery)
+    @Html.HiddenFor(m => m.NumberRepeir)
+    @Html.HiddenFor(m => m.NumberPumps)
+    @Html.HiddenFor(m => m.Vending)
+    @Html.HiddenFor(m => m.WorkingHours)
+    @Html.HiddenFor(m => m.UncertainReasons)
+    @Html.HiddenFor(m => m.Quantity)
+    @Html.HiddenFor(m => m.HistoryId)
+
+    <div class="container">
+
+        <p>История за: @Model.DateTime.ToString("dd.MM.yyyy")</p>
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th>События</th>
+                    <th>Значения</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>Сезон</td>
+                    <td>@Model.Season</td>
+                </tr>
+
+                <tr>
+                    <td>Температурный режим</td>
+                    <td>@Model.TemperatureConditions</td>
+                </tr>
+
+                <tr>
+
+                    <td>Количество сотрудников</td>
+                    <td>@Model.NumberEmployees</td>
+
+                </tr>
+
+                <tr>
+                    <td>День недели</td>
+                    <td>@Model.DayWeek</td>
+                </tr>
+
+                <tr>
+                    <td>Наличие запасов с предыдущего дня</td>
+                    <td>@Model.PreviouDay</td>
+                </tr>
+
+                <tr>
+                    <td>Времени привоза воды поставщиком</td>
+                    <td>@Model.TimeDelivery</td>
+                </tr>
+
+                <tr>
+                    <td>Количества диспенсеров в работе и на ремонте</td>
+                    <td>@Model.NumberRepeir</td>
+                </tr>
+                <tr>
+                    <td>Количества помп</td>
+                    <td>@Model.NumberPumps</td>
+                </tr>
+
+                <tr>
+                    <td>Наличием альтернативных источников (вендинговые автоматы)</td>
+                    <td>@Model.Vending</td>
+                </tr>
+
+                <tr>
+                    <td>Продолжительности рабочего дня</td>
+                    <td>@Model.WorkingHours</td>
+                </tr>
+
+                <tr>
+                    <td>Неопределенных причин</td>
+                    <td>@Model.UncertainReasons</td>
+                </tr>
+
+                <tr>
+                    <th>Итог потраченой воды ( л )</th>
+                    <td>@Model.Quantity</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Изменить</button>
+
+    </div>
+}

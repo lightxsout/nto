@@ -1,0 +1,24 @@
+﻿@model IEnumerable<WaterHistoryApp.Models.History>
+
+<link rel="stylesheet" href="~/css/datepicker.css" />
+
+<body>
+
+    @using (Html.BeginForm("Graph", "Graph", FormMethod.Post))
+    {
+        <div class="container">
+
+                <br /><label>Введите месяц для просмотра графика: </label><br />
+                <div class="date_box" >
+                    <input type="text" class="datepicker-here" data-min-view="months" data-view="months" data-date-format="MM yyyy" name="Date" autocomplete="off" required />
+                    <button type="submit" class="btn btn-primary">Перейти</button>
+                </div>
+
+            </div>
+    }
+
+</body>
+
+<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script src="~/js/datepicker.js"></script>
+

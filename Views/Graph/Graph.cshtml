@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WaterHistoryApp.Models.History>
+
+
+@using Newtonsoft.Json;
+
+@Html.AntiForgeryToken()
+
+<input type="hidden" id="quan" value="@Html.Raw(Json.Serialize(Model.Select(w => w.Quantity))) " />
+<input type="hidden" id="dat" value="@Html.Raw(Json.Serialize(Model.Select(w => w.DateTime)))" />
+
+<div class="container">
+
+    <p>Ниже приведен график использованой воды</p>
+    <p>История за месяц: @Model.First().DateTime.ToString("MM.yyyy")</p>
+
+    <canvas id="waterChart" width="60" height="30"></canvas>
+
+</div>
+
+<script src="~/js/moment.js"></script>
+<script src="~/js/Chart.js"></script>
+
+<script type="text/javascript">
+    var ctx = document.getElementById("waterChart").getContext('2d');
+    var q = @Html.Raw(Json.Serialize(ViewBag.Quantity));
+    var d = @Html.Raw(Json.Serialize(ViewBag.Dates));
+
+    Chart.defaults.global.defaultFontColor = 'white';
+    var waterChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: d,
+            datasets: [{
+                label: 'Потрачено воды ( л )',
+                data: q,
+                backgroundColor: [
+                    'rgba(14,109,146,0.4)'
+                    ,
+
+                ],
+                borderColor: [
+                    'rgba(255, 255, 255, 1)'
+                    ,
+
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    },
+                }],
+                xAxes: [{
+                    type: 'time',
+                    time: {
+                        displayFormats: {
+                            'day': 'MMM D',
+                            'hour': 'MMM D'
+                        },
+                        tooltipFormat: 'MMM D'
+                    },
+                }]
+            }
+        }
+    });
+</script>
+
+
+

@@ -1,0 +1,90 @@
+﻿@model WaterHistoryApp.Models.History
+
+<div class="container">
+    <br />
+    <p>История за: @Model.DateTime.ToString("dd.MM.yyyy")</p>
+
+    @using (Html.BeginForm("HistoryNew", "Table", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.DateTime)
+
+        <br />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>События</th>
+                    <th>Значения</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>Сезон</td>
+                    <td>@Html.TextBoxFor(m => m.Season)</td>
+                </tr>
+
+                <tr>
+                    <td>Температурный режим</td>
+                    <td>@Html.TextBoxFor(m => m.Season)</td>
+                </tr>
+
+                <tr>
+
+                    <td>Количество сотрудников</td>
+                    <td>@Html.TextBoxFor(m => m.Season)</td>
+
+                </tr>
+
+                <tr>
+                    <td>День недели</td>
+                    <td>@Html.TextBoxFor(m => m.DayWeek)</td>
+                </tr>
+
+                <tr>
+                    <td>Наличие запасов с предыдущего дня</td>
+                    <td>@Html.TextBoxFor(m => m.PreviouDay)</td>
+                </tr>
+
+                <tr>
+                    <td>Времени привоза воды поставщиком</td>
+                    <td>@Html.TextBoxFor(m => m.TimeDelivery)</td>
+                </tr>
+
+                <tr>
+                    <td>Количества диспенсеров в работе и на ремонте</td>
+                    <td>@Html.TextBoxFor(m => m.NumberRepeir)</td>
+                </tr>
+                <tr>
+                    <td>Количества помп</td>
+                    <td>@Html.TextBoxFor(m => m.NumberPumps)</td>
+                </tr>
+
+                <tr>
+                    <td>Наличием альтернативных источников (вендинговые автоматы)</td>
+                    <td>@Html.TextBoxFor(m => m.Vending)</td>
+                </tr>
+
+                <tr>
+                    <td>Продолжительности рабочего дня</td>
+                    <td>@Html.TextBoxFor(m => m.WorkingHours)</td>
+                </tr>
+
+                <tr>
+                    <td>Неопределенных причин</td>
+                    <td>@Html.TextBoxFor(m => m.UncertainReasons)</td>
+                </tr>
+
+                <tr>
+                    <th>Итог потраченой воды ( л )</th>
+                    <td>@Html.TextBoxFor(m => m.Quantity)</td>
+                </tr>
+
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Сохранить</button>
+}
+
+</div>
